@@ -8,7 +8,7 @@ import subjectRoutes from "./routes/subject.routes.js";
 import chatRoutes from "./routes/chat.routes.js";
 import verifyToken from "./middlewares/verifyToken.js";
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 
 app.use("/api/auth", authRoutes);
 app.use("/api/doubt", verifyToken, doubtRoutes);
