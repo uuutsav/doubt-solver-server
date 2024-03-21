@@ -1,5 +1,6 @@
 import express from "express";
 import { login, signup } from "../controllers/auth.controller.js";
+import {ObjectId} from 'mongodb'
 
 const router = express.Router();
 
@@ -16,6 +17,25 @@ router.post("/signup", async (req, res) => {
       course,
       branch,
     } = req.body;
+    // console.log(req.body)
+    
+    // strongSubjectId is required, Do DB call later, for now hardcode
+    // const temp = await searchSubject({strongSubject})
+    // console.log("\n\ntemp: ", temp, "\n\n")
+
+    let strongSubjectId = '';
+    if (strongSubject == "CN"){
+      strongSubjectId = new ObjectId('65fa5b844ca41e5cbaa442e8')
+
+    } else if (strongSubject == "HPC"){
+      strongSubjectId = new ObjectId('65fa5c464ca41e5cbaa442ea')
+
+    } else if (strongSubject == "OS"){
+      strongSubjectId = new ObjectId('65fa5cba4ca41e5cbaa442eb')
+      
+    }
+
+    //
 
     const data = await signup({
       firstName,
@@ -24,10 +44,12 @@ router.post("/signup", async (req, res) => {
       email,
       password,
       strongSubject,
+      strongSubjectId,
       university,
       course,
       branch,
     });
+    console.log("Data: ", data)
 
     if (!data.token) {
       return res.status(401).send(data);

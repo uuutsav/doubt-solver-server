@@ -1,6 +1,7 @@
 import db from "../models/index.js";
 
 export const askDoubt = async (userId, subjectId, question) => {
+  console.log("Check check: ", userId, subjectId, question)
   const doubt = new db.Doubt({
     askerUserId: userId,
     subjectId,
@@ -39,7 +40,7 @@ export const getAllDoubts = async (userId) => {
 export const getSolversList = async (subjectId) => {
   const solvers = await db.User.find(
     {
-      strongSubjectId: subjectId,
+      strongSubjectId: subjectId ,
     },
     {
       id: 1,

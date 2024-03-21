@@ -12,6 +12,7 @@ const router = express.Router();
 router.post("/ask", async (req, res) => {
   try {
     const { userId, subjectId, question } = req.body;
+    console.log(req.body.userId)
 
     const data = await askDoubt(userId, subjectId, question);
 
@@ -33,26 +34,27 @@ router.post("/all", async (req, res) => {
   }
 });
 
-router.post("/:id", async (req, res) => {
-  const doubtId = req.params?.id;
+// router.post("/:id", async (req, res) => {
+//   const doubtId = req.params?.id;
 
-  if (!doubtId) {
-    return res.status(400).send({ message: "Invalid doubt id", status: false });
-  }
+//   if (!doubtId) {
+//     return res.status(400).send({ message: "Invalid doubt id", status: false });
+//   }
 
-  try {
-    const data = await getDoubt(doubtId);
+//   try {
+//     const data = await getDoubt(doubtId);
 
-    res.status(200).send(data);
-  } catch (error) {
-    console.log({ error });
-    res.status(500).send({ message: error.message, status: false });
-  }
-});
+//     res.status(200).send(data);
+//   } catch (error) {
+//     console.log({ error });
+//     res.status(500).send({ message: error.message, status: false });
+//   }
+// });
 
 router.post("/solvers-list", async (req, res) => {
   try {
     const { subjectId } = req.body;
+    console.log(req.body)
 
     const data = await getSolversList(subjectId);
 

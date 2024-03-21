@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   strongSubjectId: {
     type: mongoose.Schema.Types.ObjectId,
-    // required: true, //commented for now
+    required: true,
     ref: "Subject",
   },
   university: { type: String, required: true },

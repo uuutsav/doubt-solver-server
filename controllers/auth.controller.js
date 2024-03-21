@@ -9,6 +9,7 @@ export const signup = async ({
   email,
   password,
   strongSubject,
+  strongSubjectId,
   university,
   course,
   branch,
@@ -26,10 +27,12 @@ export const signup = async ({
     email,
     password: await hashPassword(password),
     strongSubject,
+    strongSubjectId,
     university,
     course,
     branch,
   });
+  console.log(user)
 
   const savedUser = await user.save();
 
@@ -67,5 +70,6 @@ export const login = async (email, password) => {
   return {
     message: "User logged in successfully!",
     token: token,
+    userID: user.id,
   };
 };
